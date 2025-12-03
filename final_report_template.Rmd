@@ -1,6 +1,6 @@
 ---
 title: "CDS 101 – Final Project Report"
-author: "Group Name / Members"
+author: "Samir Dawar, Andrew Lee, Sumera"
 date: "`r format(Sys.Date(), '%B %d, %Y')`"
 output:
   html_document:
@@ -12,14 +12,13 @@ output:
     toc: true
 ---
 
-> Replace this template text with your own writing, keeping the headings and overall structure aligned with the **CDS 101 project rubric**.
 
 # 1. Problem Definition
+The Chernobyl nuclear disaster in April 1986 released large amounts of radioactive isotopes into the atmosphere, which were carried across Europe by wind patterns and weather systems. Understanding how far these contaminants traveled and how their concentrations changed with distance is essential for public health, environmental science, and historical analysis of nuclear fallout.
+In this project, we investigate how air concentrations of three isotopes—Cs-137, Cs-134, and I-131—vary with distance from the Chernobyl Nuclear Power Plant. Cs-137 is a long-lived isotope (half-life ~30 years), Cs-134 has a shorter half-life (~2 years), and I-131 is very short-lived (~8 days). Because these isotopes behave differently over time, comparing them allows us to see which fallout patterns were short-term versus long-term.
+Our primary goal is to quantify the relationship between distance and isotope concentrations using exploratory visualizations and three simple linear regression models. We expect Cs-137 to show the clearest distance-related decline, Cs-134 to show a weaker pattern, and I-131 to show little or no distance trend due to rapid decay.
 
-- Clearly state the main problem or question you are investigating.  
-- Explain why it is interesting or important.  
-- Define the objective(s) of your analysis.  
-- Mention any key assumptions.
+
 
 # 2. Data Acquisition & Description
 
