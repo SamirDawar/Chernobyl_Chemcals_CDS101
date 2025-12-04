@@ -60,14 +60,14 @@ Describe what you plan to do analytically.
 
 **Planned models / methods:**
 
-Examples:  
-- Linear regression, logistic regression  
-- Decision tree (if allowed), k-means  
-- Baseline model (e.g., majority class, mean predictor)
+- Linear regression:
+  - boxplot
+  - scatterplot
+  - geographic plot
+
 
 **Planned evaluation metrics:**
 
-Examples:  
 - Regression: RMSE, MAE, \(R^2\)  
 - Classification: accuracy, precision/recall, F1, confusion matrix  
 
@@ -87,7 +87,7 @@ What do you expect to find? It’s okay if this changes later.
 
 - What might be difficult? (missing data, noisy labels, small sample size, etc.)  
 - How might you handle or mitigate these issues?
-
+90o-
 ---
 
 **Submitted on:**  
