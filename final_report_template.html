@@ -9,9 +9,9 @@
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
-<meta name="author" content="Group Name / Members" />
+<meta name="author" content="Samir Dawar, Andrew Lee, Sumera" />
 
-<meta name="date" content="2025-11-20" />
+<meta name="date" content="2025-12-03" />
 
 <title>CDS 101 – Final Project Report</title>
 
@@ -439,8 +439,8 @@ display: none;
 
 
 <h1 class="title toc-ignore">CDS 101 – Final Project Report</h1>
-<h4 class="author">Group Name / Members</h4>
-<h4 class="date">November 20, 2025</h4>
+<h4 class="author">Samir Dawar, Andrew Lee, Sumera</h4>
+<h4 class="date">December 03, 2025</h4>
 
 </div>
 
@@ -467,40 +467,60 @@ Reproducibility</a></li>
 </ul>
 </div>
 
-<blockquote>
-<p>Replace this template text with your own writing, keeping the
-headings and overall structure aligned with the <strong>CDS 101 project
-rubric</strong>.</p>
-</blockquote>
 <div id="problem-definition" class="section level1" number="1">
 <h1><span class="header-section-number">1</span> 1. Problem
 Definition</h1>
-<ul>
-<li>Clearly state the main problem or question you are
-investigating.<br />
-</li>
-<li>Explain why it is interesting or important.<br />
-</li>
-<li>Define the objective(s) of your analysis.<br />
-</li>
-<li>Mention any key assumptions.</li>
-</ul>
+<p>The Chernobyl nuclear disaster in April 1986 released large amounts
+of radioactive isotopes into the atmosphere, which were carried across
+Europe by wind patterns and weather systems. Understanding how far these
+contaminants traveled and how their concentrations changed with distance
+is essential for public health, environmental science, and historical
+analysis of nuclear fallout. In this project, we investigate how air
+concentrations of three isotopes—Cs-137, Cs-134, and I-131—vary with
+distance from the Chernobyl Nuclear Power Plant. Cs-137 is a long-lived
+isotope (half-life ~30 years), Cs-134 has a shorter half-life (~2
+years), and I-131 is very short-lived (~8 days). Because these isotopes
+behave differently over time, comparing them allows us to see which
+fallout patterns were short-term versus long-term. Our primary goal is
+to quantify the relationship between distance and isotope concentrations
+using exploratory visualizations and three simple linear regression
+models. We expect Cs-137 to show the clearest distance-related decline,
+Cs-134 to show a weaker pattern, and I-131 to show little or no distance
+trend due to rapid decay.</p>
 </div>
 <div id="data-acquisition-description" class="section level1" number="2">
 <h1><span class="header-section-number">2</span> 2. Data Acquisition
 &amp; Description</h1>
+<p>We use the “Chernobyl Chemical Radiation / CSV / Country Data”
+dataset from Kaggle, which compiles air-concentration measurements of
+radioactive isotopes from monitoring stations across Europe in 1986.</p>
+<p>We downloaded the dataset and saved it as
+<code>Chernobyl_Chemical_Radiation.csv</code> in the <code>data/</code>
+folder. Each row represents a measurement at a specific location on a
+specific date.</p>
+<p>Key variables:</p>
 <ul>
-<li>Name and source of the dataset(s).<br />
+<li><code>PAYS</code>: two-letter country code<br />
 </li>
-<li>How you obtained the data (download link, API, etc.).<br />
+<li><code>Location</code>: monitoring station name or code<br />
 </li>
-<li>Brief description of the variables / features (with units if
-relevant).<br />
+<li><code>Longitude</code>: longitude of the station<br />
 </li>
-<li>Approximate size (rows, columns).<br />
+<li><code>Latitude</code>: latitude of the station<br />
 </li>
-<li>Any ethical, privacy, or bias considerations (if applicable).</li>
+<li><code>Date</code>: measurement date<br />
+</li>
+<li><code>I_131_(Bq/m3)</code>: I-131 concentration<br />
+</li>
+<li><code>Cs_134_(Bq/m3)</code>: Cs-134 concentration<br />
+</li>
+<li><code>Cs_137_(Bq/m3)</code>: Cs-137 concentration</li>
 </ul>
+<p>Units for isotopes are Bq/m³ (becquerels per cubic meter).</p>
+<p>These measurements were collected shortly after the disaster and
+reflect atmospheric radiation levels across Europe. There are no privacy
+concerns, as the dataset contains only environmental monitoring station
+data, not personal data.</p>
 </div>
 <div id="data-cleaning-preprocessing" class="section level1" number="3">
 <h1><span class="header-section-number">3</span> 3. Data Cleaning &amp;
@@ -623,7 +643,7 @@ Reproducibility</h1>
 </ul>
 <pre><code>## R version 4.4.1 (2024-06-14)
 ## Platform: aarch64-apple-darwin20
-## Running under: macOS 15.5
+## Running under: macOS 26.0
 ## 
 ## Matrix products: default
 ## BLAS:   /Library/Frameworks/R.framework/Versions/4.4-arm64/Resources/lib/libRblas.0.dylib 
@@ -639,11 +659,11 @@ Reproducibility</h1>
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## loaded via a namespace (and not attached):
-##  [1] digest_0.6.37     R6_2.5.1          fastmap_1.2.0     xfun_0.47        
-##  [5] cachem_1.1.0      knitr_1.48        htmltools_0.5.8.1 rmarkdown_2.28   
-##  [9] lifecycle_1.0.4   cli_3.6.3         sass_0.4.9        jquerylib_0.1.4  
-## [13] compiler_4.4.1    rstudioapi_0.16.0 tools_4.4.1       evaluate_0.24.0  
-## [17] bslib_0.8.0       yaml_2.3.10       rlang_1.1.4       jsonlite_1.8.8</code></pre>
+##  [1] digest_0.6.37     R6_2.6.1          fastmap_1.2.0     xfun_0.53        
+##  [5] cachem_1.1.0      knitr_1.50        htmltools_0.5.8.1 rmarkdown_2.29   
+##  [9] lifecycle_1.0.4   cli_3.6.5         sass_0.4.10       jquerylib_0.1.4  
+## [13] compiler_4.4.1    rstudioapi_0.17.1 tools_4.4.1       evaluate_1.0.4   
+## [17] bslib_0.9.0       yaml_2.3.10       rlang_1.1.6       jsonlite_2.0.0</code></pre>
 </div>
 <div id="references" class="section level1" number="10">
 <h1><span class="header-section-number">10</span> 10. References</h1>

@@ -21,12 +21,24 @@ Our primary goal is to quantify the relationship between distance and isotope co
 
 
 # 2. Data Acquisition & Description
+We use the “Chernobyl Chemical Radiation / CSV / Country Data” dataset from Kaggle, which compiles air-concentration measurements of radioactive isotopes from monitoring stations across Europe in 1986.
 
-- Name and source of the dataset(s).  
-- How you obtained the data (download link, API, etc.).  
-- Brief description of the variables / features (with units if relevant).  
-- Approximate size (rows, columns).  
-- Any ethical, privacy, or bias considerations (if applicable).
+We downloaded the dataset and saved it as `Chernobyl_Chemical_Radiation.csv` in the `data/` folder. Each row represents a measurement at a specific location on a specific date.
+
+Key variables:
+
+- `PAYS`: two-letter country code  
+- `Location`: monitoring station name or code  
+- `Longitude`: longitude of the station  
+- `Latitude`: latitude of the station  
+- `Date`: measurement date  
+- `I_131_(Bq/m3)`: I-131 concentration  
+- `Cs_134_(Bq/m3)`: Cs-134 concentration  
+- `Cs_137_(Bq/m3)`: Cs-137 concentration  
+
+Units for isotopes are Bq/m³ (becquerels per cubic meter).
+
+These measurements were collected shortly after the disaster and reflect atmospheric radiation levels across Europe. There are no privacy concerns, as the dataset contains only environmental monitoring station data, not personal data.
 
 ```{r setup-data, echo=FALSE, message=FALSE, warning=FALSE}
 # Example: load a dataset (replace with your own)
