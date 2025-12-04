@@ -38,7 +38,7 @@ library(ggplot2)
 # 3. Data Cleaning & Preprocessing
 We selected the variables needed for our analysis and renamed the isotope columns to shorter and easier names. Rows with missing isotope values were removed. To study how radiation changes with distance, we created a new variable called `distance` using a simple distance formula based on longitude and latitude differences.
 
-```{r cleaning, eval=FALSE}
+```{r cleaning, warning=FALSE}
 chernobyl <- read.csv("data/Chernobyl_ Chemical_Radiation.csv")
 
 chernobyl_clean <- chernobyl %>%
@@ -68,24 +68,68 @@ head(chernobyl_clean)
 ```
 
 # 4. Exploratory Data Analysis (EDA)
+The goal of this section is to explore the dataset and understand how radiation levels differ across countries and how they change with distance from the Chernobyl plant. We look at summary statistics, boxplots, scatterplots, and a geographic-style plot to visually assess the relationships that will later be modeled. We begin by examining simple descriptive statistics for the three isotopes.
 
-This section maps directly to the **EDA** part of the rubric:
-
-- Summary statistics  
-- Visualizations  
-- Interpretation connected to the research question  
-
-```{r eda-summary, message=FALSE, warning=FALSE}
-# library(dplyr)
-# summary(data_clean)
+```{r, warning=FALSE}
+summary(chernobyl_clean[, c("I_131", "Cs_134", "Cs_137")])
 ```
+The summary statistics show that all three isotopes have very skewed distributions. Most values are close to zero, but there are a few large measurements, especially for Cs-137 and I-131. This is expected because only certain monitoring stations recorded heavy fallout. Cs-134 has more missing values, which reflects gaps in collection across countries. These summaries help us understand the starting point before plotting.
 
-```{r eda-plot-example, message=FALSE, warning=FALSE, fig.cap="Example histogram of a numeric variable (EDA rubric)."}
-# library(ggplot2)
-# ggplot(data_clean, aes(x = some_numeric_variable)) +
-#   geom_histogram(binwidth = 5, color = "white") +
-#   labs(x = "Some Variable", y = "Count", title = "Distribution of Some Variable")
+```{r, warning=FALSE}
+ggplot(chernobyl_clean, aes(x = PAYS, y = Cs_137)) +
+geom_boxplot() +
+labs(
+title = "Cs-137 Levels by Country",
+x = "Country",
+y = "Cs-137 (Bq/m3)"
+)
 ```
+This boxplot shows that Cs-137 levels vary noticeably across different countries. Some countries have higher medians and more extreme outliers, while others have consistently low measurements. Because Cs-137 is a long-lasting isotope, these differences likely reflect how fallout patterns moved across Europe after the explosion. This supports the idea that geographic location influenced radiation exposure levels.
+
+```{r, warning=FALSE}
+ggplot(chernobyl_clean, aes(distance, Cs_137)) +
+geom_point(alpha = 0.6) +
+labs(
+title = "Cs-137 vs Distance from Chernobyl",
+x = "Distance",
+y = "Cs-137 (Bq/m3)"
+)
+```
+Cs-137 clearly decreases as distance from Chernobyl increases. Locations closer to the plant have higher concentrations and more extreme values, while farther locations cluster near zero. This matches scientific expectations because Cs-137 persists in the environment and spreads outward with decreasing intensity. This visualization directly supports our main research question.
+
+```{r, warning=FALSE}
+ggplot(chernobyl_clean, aes(distance, Cs_134)) +
+geom_point(alpha = 0.6) +
+labs(
+title = "Cs-134 vs Distance from Chernobyl",
+x = "Distance",
+y = "Cs-134 (Bq/m3)"
+)
+```
+Cs-134 also shows a downward pattern with distance, but the trend is weaker than Cs-137. Many values are close to zero, and there is more variation overall. This is expected because Cs-134 decays faster than Cs-137, so its measurements depend more on timing and local environmental conditions. Still, the overall pattern suggests that distance plays some role in Cs-134 concentration.
+
+```{r, warning=FALSE}
+ggplot(chernobyl_clean, aes(distance, I_131)) +
+geom_point(alpha = 0.6) +
+labs(
+title = "I-131 vs Distance from Chernobyl",
+x = "Distance",
+y = "I-131 (Bq/m3)"
+)
+```
+I-131 does not show a clear relationship with distance. Measurements are scattered at many distances, including some high values that appear far from the plant. This behavior makes sense because I-131 has a very short half-life (about eight days), so its concentration depends more on the date of measurement and weather patterns than on geographic distance. Distance alone cannot explain I-131 levels.
+
+```{r, warning=FALSE}
+ggplot(chernobyl_clean, aes(Longitude, Latitude, color = Cs_137)) +
+geom_point() +
+labs(
+title = "Geographic Distribution of Cs-137",
+x = "Longitude",
+y = "Latitude",
+color = "Cs-137"
+)
+```
+This map-style plot shows where the highest Cs-137 values occurred across Europe. Higher concentrations appear in areas closer to the Chernobyl plant and in regions where prevailing winds carried the fallout. This plot reinforces that contamination was not uniform across Europe and supports the idea that both distance and location influenced radiation levels.
 
 # 5. Visualization Quality and Storytelling
 
