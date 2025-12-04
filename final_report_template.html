@@ -470,79 +470,42 @@ Reproducibility</a></li>
 <div id="problem-definition" class="section level1" number="1">
 <h1><span class="header-section-number">1</span> 1. Problem
 Definition</h1>
-<p>The Chernobyl nuclear disaster in April 1986 released large amounts
-of radioactive isotopes into the atmosphere, which were carried across
-Europe by wind patterns and weather systems. Understanding how far these
-contaminants traveled and how their concentrations changed with distance
-is essential for public health, environmental science, and historical
-analysis of nuclear fallout. In this project, we investigate how air
-concentrations of three isotopes—Cs-137, Cs-134, and I-131—vary with
-distance from the Chernobyl Nuclear Power Plant. Cs-137 is a long-lived
-isotope (half-life ~30 years), Cs-134 has a shorter half-life (~2
-years), and I-131 is very short-lived (~8 days). Because these isotopes
-behave differently over time, comparing them allows us to see which
-fallout patterns were short-term versus long-term. Our primary goal is
-to quantify the relationship between distance and isotope concentrations
-using exploratory visualizations and three simple linear regression
-models. We expect Cs-137 to show the clearest distance-related decline,
-Cs-134 to show a weaker pattern, and I-131 to show little or no distance
-trend due to rapid decay.</p>
+<p>The Chernobyl nuclear disaster released radioactive materials into
+the atmosphere, and these contaminants were carried across Europe by
+wind and weather systems. In this project, we study how the
+concentrations of three isotopes (Cs-137, Cs-134, and I-131) vary with
+distance from the Chernobyl Nuclear Power Plant. Our main goal is to see
+whether radiation levels decrease as distance increases and whether each
+isotope behaves differently due to differences in half-life. Cs-137 has
+a long half-life (about 30 years), Cs-134 decays faster, and I-131
+decays very quickly (around 8 days). By comparing them, we can
+understand which isotopes show clear geographic decay and which are more
+influenced by timing and environmental conditions.</p>
 </div>
 <div id="data-acquisition-description" class="section level1" number="2">
 <h1><span class="header-section-number">2</span> 2. Data Acquisition
 &amp; Description</h1>
-<p>We use the “Chernobyl Chemical Radiation / CSV / Country Data”
-dataset from Kaggle, which compiles air-concentration measurements of
-radioactive isotopes from monitoring stations across Europe in 1986.</p>
-<p>We downloaded the dataset and saved it as
-<code>Chernobyl_Chemical_Radiation.csv</code> in the <code>data/</code>
-folder. Each row represents a measurement at a specific location on a
-specific date.</p>
-<p>Key variables:</p>
-<ul>
-<li><code>PAYS</code>: two-letter country code<br />
-</li>
-<li><code>Location</code>: monitoring station name or code<br />
-</li>
-<li><code>Longitude</code>: longitude of the station<br />
-</li>
-<li><code>Latitude</code>: latitude of the station<br />
-</li>
-<li><code>Date</code>: measurement date<br />
-</li>
-<li><code>I_131_(Bq/m3)</code>: I-131 concentration<br />
-</li>
-<li><code>Cs_134_(Bq/m3)</code>: Cs-134 concentration<br />
-</li>
-<li><code>Cs_137_(Bq/m3)</code>: Cs-137 concentration</li>
-</ul>
-<p>Units for isotopes are Bq/m³ (becquerels per cubic meter).</p>
-<p>These measurements were collected shortly after the disaster and
-reflect atmospheric radiation levels across Europe. There are no privacy
-concerns, as the dataset contains only environmental monitoring station
-data, not personal data.</p>
+<p>We used the “Chernobyl Chemical Radiation / CSV / Country Data”
+dataset from Kaggle. After downloading the file, we saved it in our
+project folder under
+<code>data/Chernobyl_Chemical_Radiation.csv</code>.</p>
+<p>The dataset contains: - Country code (<code>PAYS</code>) - Monitoring
+station name (<code>Location</code>) - Longitude and latitude - Date of
+measurement - Concentrations of I-131, Cs-134, and Cs-137 (Bq/m3)</p>
+<p>Each row is one observation from a monitoring location on a specific
+day shortly after the accident. The dataset does not include any
+personal data, so there are no privacy concerns.</p>
 </div>
 <div id="data-cleaning-preprocessing" class="section level1" number="3">
 <h1><span class="header-section-number">3</span> 3. Data Cleaning &amp;
 Preprocessing</h1>
-<p>Describe the steps you took to make the data usable, for example:</p>
-<ul>
-<li>Handling missing values (drop, impute, etc.).<br />
-</li>
-<li>Fixing types (dates, numeric vs. categorical).<br />
-</li>
-<li>Removing outliers (if done).<br />
-</li>
-<li>Creating new features (feature engineering).<br />
-</li>
-<li>Any scaling or encoding.</li>
-</ul>
-<pre class="r"><code># Example pseudo-code for cleaning:
-# data_clean &lt;- data |&gt;
-#   dplyr::filter(!is.na(target_variable)) |&gt;
-#   dplyr::mutate(
-#     new_feature = some_transformation(old_feature)
-#   )</code></pre>
+<p>We selected the variables needed for our analysis and renamed the
+isotope columns to shorter and easier names. Rows with missing isotope
+values were removed. To study how radiation changes with distance, we
+created a new variable called <code>distance</code> using a simple
+distance formula based on longitude and latitude differences.</p>
+<pre class="r"><code>chernobyl &lt;- read.csv(&quot;data/Chernobyl_Chemical_Radiation.csv&quot;)
+chernobyl_clean &lt;- chernobyl %&gt;%</code></pre>
 </div>
 <div id="exploratory-data-analysis-eda" class="section level1" number="4">
 <h1><span class="header-section-number">4</span> 4. Exploratory Data
@@ -658,12 +621,19 @@ Reproducibility</h1>
 ## attached base packages:
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
+## other attached packages:
+## [1] ggplot2_3.5.2 dplyr_1.1.4  
+## 
 ## loaded via a namespace (and not attached):
-##  [1] digest_0.6.37     R6_2.6.1          fastmap_1.2.0     xfun_0.53        
-##  [5] cachem_1.1.0      knitr_1.50        htmltools_0.5.8.1 rmarkdown_2.29   
-##  [9] lifecycle_1.0.4   cli_3.6.5         sass_0.4.10       jquerylib_0.1.4  
-## [13] compiler_4.4.1    rstudioapi_0.17.1 tools_4.4.1       evaluate_1.0.4   
-## [17] bslib_0.9.0       yaml_2.3.10       rlang_1.1.6       jsonlite_2.0.0</code></pre>
+##  [1] vctrs_0.6.5        cli_3.6.5          knitr_1.50         rlang_1.1.6       
+##  [5] xfun_0.53          generics_0.1.4     jsonlite_2.0.0     glue_1.8.0        
+##  [9] htmltools_0.5.8.1  sass_0.4.10        scales_1.4.0       rmarkdown_2.29    
+## [13] grid_4.4.1         evaluate_1.0.4     jquerylib_0.1.4    tibble_3.3.0      
+## [17] fastmap_1.2.0      yaml_2.3.10        lifecycle_1.0.4    compiler_4.4.1    
+## [21] RColorBrewer_1.1-3 pkgconfig_2.0.3    rstudioapi_0.17.1  farver_2.1.2      
+## [25] digest_0.6.37      R6_2.6.1           tidyselect_1.2.1   pillar_1.11.0     
+## [29] magrittr_2.0.3     bslib_0.9.0        withr_3.0.2        gtable_0.3.6      
+## [33] tools_4.4.1        cachem_1.1.0</code></pre>
 </div>
 <div id="references" class="section level1" number="10">
 <h1><span class="header-section-number">10</span> 10. References</h1>

@@ -14,55 +14,34 @@ output:
 
 
 # 1. Problem Definition
-The Chernobyl nuclear disaster in April 1986 released large amounts of radioactive isotopes into the atmosphere, which were carried across Europe by wind patterns and weather systems. Understanding how far these contaminants traveled and how their concentrations changed with distance is essential for public health, environmental science, and historical analysis of nuclear fallout.
-In this project, we investigate how air concentrations of three isotopes—Cs-137, Cs-134, and I-131—vary with distance from the Chernobyl Nuclear Power Plant. Cs-137 is a long-lived isotope (half-life ~30 years), Cs-134 has a shorter half-life (~2 years), and I-131 is very short-lived (~8 days). Because these isotopes behave differently over time, comparing them allows us to see which fallout patterns were short-term versus long-term.
-Our primary goal is to quantify the relationship between distance and isotope concentrations using exploratory visualizations and three simple linear regression models. We expect Cs-137 to show the clearest distance-related decline, Cs-134 to show a weaker pattern, and I-131 to show little or no distance trend due to rapid decay.
+The Chernobyl nuclear disaster released radioactive materials into the atmosphere, and these contaminants were carried across Europe by wind and weather systems. In this project, we study how the concentrations of three isotopes (Cs-137, Cs-134, and I-131) vary with distance from the Chernobyl Nuclear Power Plant. Our main goal is to see whether radiation levels decrease as distance increases and whether each isotope behaves differently due to differences in half-life. Cs-137 has a long half-life (about 30 years), Cs-134 decays faster, and I-131 decays very quickly (around 8 days). By comparing them, we can understand which isotopes show clear geographic decay and which are more influenced by timing and environmental conditions.
 
 
 
 # 2. Data Acquisition & Description
-We use the “Chernobyl Chemical Radiation / CSV / Country Data” dataset from Kaggle, which compiles air-concentration measurements of radioactive isotopes from monitoring stations across Europe in 1986.
+We used the “Chernobyl Chemical Radiation / CSV / Country Data” dataset from Kaggle. After downloading the file, we saved it in our project folder under `data/Chernobyl_Chemical_Radiation.csv`.
 
-We downloaded the dataset and saved it as `Chernobyl_Chemical_Radiation.csv` in the `data/` folder. Each row represents a measurement at a specific location on a specific date.
+The dataset contains:
+- Country code (`PAYS`)
+- Monitoring station name (`Location`)
+- Longitude and latitude
+- Date of measurement
+- Concentrations of I-131, Cs-134, and Cs-137 (Bq/m3)
 
-Key variables:
-
-- `PAYS`: two-letter country code  
-- `Location`: monitoring station name or code  
-- `Longitude`: longitude of the station  
-- `Latitude`: latitude of the station  
-- `Date`: measurement date  
-- `I_131_(Bq/m3)`: I-131 concentration  
-- `Cs_134_(Bq/m3)`: Cs-134 concentration  
-- `Cs_137_(Bq/m3)`: Cs-137 concentration  
-
-Units for isotopes are Bq/m³ (becquerels per cubic meter).
-
-These measurements were collected shortly after the disaster and reflect atmospheric radiation levels across Europe. There are no privacy concerns, as the dataset contains only environmental monitoring station data, not personal data.
+Each row is one observation from a monitoring location on a specific day shortly after the accident. The dataset does not include any personal data, so there are no privacy concerns.
 
 ```{r setup-data, echo=FALSE, message=FALSE, warning=FALSE}
-# Example: load a dataset (replace with your own)
-# library(readr)
-# data <- read_csv("data/your_data.csv")
+library(dplyr)
+library(ggplot2)
 ```
 
 # 3. Data Cleaning & Preprocessing
-
-Describe the steps you took to make the data usable, for example:
-
-- Handling missing values (drop, impute, etc.).  
-- Fixing types (dates, numeric vs. categorical).  
-- Removing outliers (if done).  
-- Creating new features (feature engineering).  
-- Any scaling or encoding.
+We selected the variables needed for our analysis and renamed the isotope columns to shorter and easier names. Rows with missing isotope values were removed. To study how radiation changes with distance, we created a new variable called `distance` using a simple distance formula based on longitude and latitude differences.
 
 ```{r cleaning, eval=FALSE}
-# Example pseudo-code for cleaning:
-# data_clean <- data |>
-#   dplyr::filter(!is.na(target_variable)) |>
-#   dplyr::mutate(
-#     new_feature = some_transformation(old_feature)
-#   )
+chernobyl <- read.csv("data/Chernobyl_Chemical_Radiation.csv")
+chernobyl_clean <- chernobyl %>%
+  
 ```
 
 # 4. Exploratory Data Analysis (EDA)
