@@ -77,17 +77,17 @@ Describe what you plan to do analytically.
 
 What do you expect to find? It’s okay if this changes later.
 
-- Bullet point 1 (e.g., “We expect feature X to be a strong predictor of Y.”)  
-- Bullet point 2  
-- Bullet point 3  
+- We expect distance from Chernobyl to be the strongest determiner of radiation measures. (farther away from Chernobyl = less isotope count).  
+- That most of the isotopes will be generally equal in amount, when distance and date are mostly same.  
+- Of course, countries closer to Chernobyl will have higher radiation measures (number of isotopes).
 
 ---
 
 ## 6. Potential Challenges (Optional)
 
-- What might be difficult? (missing data, noisy labels, small sample size, etc.)  
-- How might you handle or mitigate these issues?
-90o-
+- What might be difficult? missing data, sample size being potentially too large, determining wind effects to isotopes  
+- How might you handle or mitigate these issues? reduce sample used, creating new variables that take outliers to determine potential patterns in isotope movement.
+
 ---
 
 **Submitted on:**  
