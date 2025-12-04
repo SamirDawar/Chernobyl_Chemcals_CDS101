@@ -14,14 +14,14 @@ output:
 
 ## 1. Dataset
 
-**Dataset Name:**  
-**Source / Platform (Kaggle, UCI, gov, etc.):**  
+**Dataset Name: Chernobyl Chemical Radiation / CSV / Country Data**  
+**Source / Platform: Kaggle**  
 
 **Short Description:**  
-- What does this dataset contain?  
-- What are the main variables (features)?  
-- Approximate number of rows / columns?  
-- Why is this dataset interesting or relevant?
+- This dataset contains radiation measurements after The Chernobyl Incident. Looking at three isotopes, across varying dates in different European countries, and specific cities.
+- With the main variables of radiation measurements being the three isotopes which are Iodine-131 (I-131), Caesium-134 (Cs-134), and Caesium-137 (Cs-137).
+- This dataset contains 9 rows, and approximately 2038 columns.
+- As for it's relevance, The Chernobyl Incident is considered to be the worst nuclear disaster in history, based on cost and casualties caused by the accident. Not only that, Several other European countries beside the Soviet Union were affected by it, due to a massive atmospheric transfer of radioactive material. Highlighting a point of interest on how drastic these effects were, across multiple countries, cities, and communities.
 
 ---
 
@@ -29,7 +29,7 @@ output:
 
 Paste a direct URL to the dataset (or documentation) here:
 
-`https://...`
+`https://www.kaggle.com/datasets/brsdincer/chernobyl-chemical-radiation-csv-country-data`
 
 ---
 
@@ -39,7 +39,7 @@ Write 1–2 clear, specific, data-driven questions you want to answer.
 
 **Main research question:**
 
-> _Type your main question here._
+> _How did radiation levels of I-131, Cs-134, and Cs-137 vary across different countries after the Chernobyl disaster?_
 
 **Optional secondary question(s):**
 
