@@ -43,7 +43,7 @@ Write 1–2 clear, specific, data-driven questions you want to answer.
 
 **Optional secondary question(s):**
 
-> _List any additional questions here._
+> _How does each radiation isotope vary from each other? what properties of these isotopes could explain any variation?_
 
 ---
 
