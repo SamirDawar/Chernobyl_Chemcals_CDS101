@@ -504,8 +504,31 @@ isotope columns to shorter and easier names. Rows with missing isotope
 values were removed. To study how radiation changes with distance, we
 created a new variable called <code>distance</code> using a simple
 distance formula based on longitude and latitude differences.</p>
-<pre class="r"><code>chernobyl &lt;- read.csv(&quot;data/Chernobyl_Chemical_Radiation.csv&quot;)
-chernobyl_clean &lt;- chernobyl %&gt;%</code></pre>
+<pre class="r"><code>chernobyl &lt;- read.csv(&quot;data/Chernobyl_ Chemical_Radiation.csv&quot;)
+
+chernobyl_clean &lt;- chernobyl %&gt;%
+  select(
+    PAYS,
+    Location,
+    Longitude,
+    Latitude,
+    I_131 = I_131_.Bq.m3.,
+    Cs_134 = Cs_134_.Bq.m3.,
+    Cs_137 = Cs_137_.Bq.m3.
+  ) %&gt;%
+  mutate(
+    I_131 = as.numeric(I_131),
+    Cs_134 = as.numeric(Cs_134),
+    Cs_137 = as.numeric(Cs_137)
+  ) %&gt;%
+  filter(!is.na(Cs_137))
+
+#distrance measurement
+chernobyl_clean &lt;- chernobyl_clean %&gt;%
+  mutate(
+    distance = sqrt((Longitude - 30.099)^2 + (Latitude - 51.389)^2)
+  )
+head(chernobyl_clean)</code></pre>
 </div>
 <div id="exploratory-data-analysis-eda" class="section level1" number="4">
 <h1><span class="header-section-number">4</span> 4. Exploratory Data

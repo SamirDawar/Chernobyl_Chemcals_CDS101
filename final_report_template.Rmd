@@ -39,8 +39,31 @@ library(ggplot2)
 We selected the variables needed for our analysis and renamed the isotope columns to shorter and easier names. Rows with missing isotope values were removed. To study how radiation changes with distance, we created a new variable called `distance` using a simple distance formula based on longitude and latitude differences.
 
 ```{r cleaning, eval=FALSE}
-chernobyl <- read.csv("data/Chernobyl_Chemical_Radiation.csv")
+chernobyl <- read.csv("data/Chernobyl_ Chemical_Radiation.csv")
+
 chernobyl_clean <- chernobyl %>%
+  select(
+    PAYS,
+    Location,
+    Longitude,
+    Latitude,
+    I_131 = I_131_.Bq.m3.,
+    Cs_134 = Cs_134_.Bq.m3.,
+    Cs_137 = Cs_137_.Bq.m3.
+  ) %>%
+  mutate(
+    I_131 = as.numeric(I_131),
+    Cs_134 = as.numeric(Cs_134),
+    Cs_137 = as.numeric(Cs_137)
+  ) %>%
+  filter(!is.na(Cs_137))
+
+#distrance measurement
+chernobyl_clean <- chernobyl_clean %>%
+  mutate(
+    distance = sqrt((Longitude - 30.099)^2 + (Latitude - 51.389)^2)
+  )
+head(chernobyl_clean)
   
 ```
 
