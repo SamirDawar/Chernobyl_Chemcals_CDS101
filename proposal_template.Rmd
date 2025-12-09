@@ -35,8 +35,6 @@ Paste a direct URL to the dataset (or documentation) here:
 
 ## 3. Research Question
 
-Write 1–2 clear, specific, data-driven questions you want to answer.
-
 **Main research question:**
 
 > _How did radiation levels of I-131, Cs-134, and Cs-137 vary across different countries after the Chernobyl disaster?_
@@ -48,8 +46,6 @@ Write 1–2 clear, specific, data-driven questions you want to answer.
 ---
 
 ## 4. Modeling Approach / Models Used
-
-Describe what you plan to do analytically.
 
 - Type of task (check all that apply):
   - [ ] Exploratory analysis only  
@@ -74,8 +70,6 @@ Describe what you plan to do analytically.
 ---
 
 ## 5. Expected Results
-
-What do you expect to find? It’s okay if this changes later.
 
 - We expect distance from Chernobyl to be the strongest determiner of radiation measures. (farther away from Chernobyl = less isotope count).  
 - That most of the isotopes will be generally equal in amount, when distance and date are mostly same.  
