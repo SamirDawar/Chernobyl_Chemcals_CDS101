@@ -164,25 +164,59 @@ ggplot(chernobyl_clean, aes(distance, Cs_137)) +
     x = "Distance from Chernobyl",
     y = "Cs-137"
   )
-
 ```
 
 
 # 8. Conclusions & Recommendations
 
-Summarize the key takeaways:
+**Our main research question was whether radiation level decreased as distance from the Chernobyl Nuclear Power Plant increased, and whether different isotopes behaved differently because of their half-lives.**
 
-- Answer your original research question(s) directly.  
-- Highlight the most important patterns or relationships you found.  
-- Discuss limitations (data size, bias, missing variables, etc.).  
-- Suggest possible extensions or future work.
+#### Key Findings:
+
+* Cs-137 shows the clearest distance-based pattern. In both the scatterplot and the linear model, Cs-137 decreases as distance increases. The trend is small but statistically significant. This fits what we expect from a long-lasting isotope that traveled across Europe with the wind but still shows a general decline farther from the disaster site.
+
+* Cs-134 also decreases with distance but more weakly. Many Cs-134 values were close to zero, and the relationship was noisier. Because Cs-134 decays faster than Cs-137, the amount measured depended more on timing and local conditions, which adds variability.
+
+* I-131 does not follow a clear distance pattern. The scatterplot showed high scatter at all distances. Since I-131 has a short half-life of about eight days, its concentration depends heavily on when each measurement was taken rather than how far the location was from Chernobyl. Distance alone cannot explain I-131 levels.
+
+* The linear regression model supports the EDA patterns. For Cs-137, the model found a negative slope, meaning levels decrease as distance increases. However, the R² value was small, showing that distance explains only a small part of the variation. Many other factors also affected fallout levels, such as wind direction, storms, time of sampling, and geography.
+
+
+#### Limitations
+
+* Some countries submitted many measurements while others had very few. This affects how well the model can generalize.
+
+* Without the exact date of each sample, we cannot accurately model fast-decaying isotopes like I-131.
+
+* We used an approximate distance formula based on longitude and latitude. A more precise method or real geographic distance would improve accuracy.
+
+* Rainfall, wind direction, and terrain played huge roles in fallout patterns, but the dataset does not include these variables.
+
+#### Recommendations & Future Work
+
+* If measurement dates were available, we could model decay curves and understand how quickly concentrations dropped over time.
+
+* Including latitude, longitude, and possibly direction from the reactor could improve prediction models.
+
+* Radiation fallout rarely decreases in a perfectly linear way. A curved or spatially-aware model could capture patterns better.
+
+* A combined model could help show how half-life affects the relationship between distance and contamination levels.
+
+Distance from Chernobyl does play a role in radiation levels, especially for long-lasting isotopes like Cs-137. However, distance alone cannot fully explain the variation we see across Europe. Fallout patterns were shaped by many factors, and radiation behavior differs strongly depending on the isotope. Our results reinforce both the scientific understanding of the disaster and the importance of considering physical and environmental processes when modeling real-world data.
 
 # 9. Code Quality & Reproducibility
+1. Download the dataset below and place it in the data folder
+https://www.kaggle.com/datasets/brsdincer/chernobyl-chemical-radiation-csv-country-data
 
-Briefly document how someone else can reproduce your results:
+2. Open the R Markdown file in Rstudio titled final_report_template.Rmd
 
-- Which R scripts or Rmd files to run.  
-- Any required R packages.  
+3. install the required R packages if they are not already installed by running the following commands in the console.
+```{r, eval=FALSE}
+install.packages("dplyr")
+install.packages("ggplot2")
+```
+
+4. Run each code block in the document and finally Knit.
 
 ```{r session-info, echo=FALSE}
 sessionInfo()
