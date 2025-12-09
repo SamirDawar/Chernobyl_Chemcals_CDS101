@@ -143,7 +143,7 @@ Use this section to satisfy the **Visualization Quality** rubric criterion:
 
 Explain how you framed the problem and which models you chose:
 
-- Type of task (regression, classification, etc.).  
+- Type of task (regression, classification, etc.)
 - Baseline model or heuristic, if used.  
 - Main model(s) chosen and why they are appropriate.
 
