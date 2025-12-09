@@ -1,15 +1,15 @@
 ---
 title: "CDS 101 – Final Project Report"
-author: "Samir Dawar, Andrew Lee, Sumera"
+author: "Samir Dawar, Andrew Lee, Sumera Muhamm"
 date: "`r format(Sys.Date(), '%B %d, %Y')`"
 output:
+  pdf_document:
+    toc: true
   html_document:
     css: "gmu-cds101.css"
     toc: true
     toc_depth: 3
     number_sections: true
-  pdf_document:
-    toc: true
 ---
 
 
