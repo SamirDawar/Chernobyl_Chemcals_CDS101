@@ -149,27 +149,24 @@ Explain how you framed the problem and which models you chose:
 
 # 7. Model Implementation & Evaluation
 
-This corresponds to the **Model Implementation & Evaluation** rubric criterion.
+To evaluate how well distance explains radiation levels, we fit a simple linear regression model using Cs-137 as the response variable and distance as the predictor. Cs-137 was chosen because it showed the clearest decreasing pattern with distance in our EDA.
 
-Describe:
+A linear regression is appropriate because both variables are numeric and our goal is to measure how Cs-137 changes for every unit increase in distance from the plant.
 
-- Features used.  
-- Data splitting strategy (train/test or cross-validation).  
-- Metrics used (accuracy, F1, RMSE, etc.).  
-- Tables/plots summarizing performance.  
-- A short interpretation of each metric/plot.
+```{r modeling}
+model_cs137 <- lm(Cs_137 ~ distance, data = chernobyl_clean)
+summary(model_cs137)
+ggplot(chernobyl_clean, aes(distance, Cs_137)) +
+  geom_point(alpha = 0.6) +
+  geom_smooth(method = "lm", se = FALSE, color = "red") +
+  labs(
+    title = "Linear Model Fit: Cs-137 vs. Distance",
+    x = "Distance from Chernobyl",
+    y = "Cs-137"
+  )
 
-```{r modeling, eval=FALSE}
-# Example structure:
-# set.seed(123)
-# train_index <- sample(seq_len(nrow(data_clean)), size = 0.8 * nrow(data_clean))
-# train <- data_clean[train_index, ]
-# test  <- data_clean[-train_index, ]
-#
-# model <- glm(target ~ ., data = train, family = binomial)
-# preds <- predict(model, newdata = test, type = "response")
-# # compute metrics...
 ```
+
 
 # 8. Conclusions & Recommendations
 
