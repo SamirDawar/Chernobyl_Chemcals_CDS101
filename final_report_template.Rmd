@@ -223,13 +223,15 @@ sessionInfo()
 ```
 
 # 10. References
+* Kaggle dataset used for this project -> https://www.kaggle.com/datasets/brsdincer/chernobyl-chemical-radiation-csv-country-data
 
-List any references you used, such as:
+* https://www.epa.gov/radiation/radiation-terms-and-units
 
-- Dataset documentation.  
-- Research papers or articles.  
-- Tutorials or blog posts.
+* https://www.r-project.org/
 
-# Appendix (Optional)
+* https://www.sciencedirect.com/topics/medicine-and-dentistry/cesium-134#:~:text=Cesium%2D134%20is%20a%20radioactive,materials%2C%20particularly%20following%20nuclear%20accidents.
 
-Include extra plots, diagnostic checks, or model comparisons if needed.
+* https://www.cdc.gov/radiation-emergencies/hcp/isotopes/cesium-137.html
+
+* https://www.oecd-nea.org/jcms/pl_28351/chernobyl-chapter-vi-agricultural-and-environmental-impacts
+
