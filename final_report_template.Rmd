@@ -133,11 +133,12 @@ This map-style plot shows where the highest Cs-137 values occurred across Europe
 
 # 5. Visualization Quality and Storytelling
 
-Use this section to satisfy the **Visualization Quality** rubric criterion:
-
-- Explain why your plot types are appropriate.  
-- Comment on labels, legends, colors, and overall readability.  
-- Mention any steps you took to make plots accessible and interpretable.
+Our goal is to measure how radiation levels change with distance from the Chernobyl Nuclear Power Plant. Because our response variables (Cs-137, Cs-134, and I-131) are numeric measurements, this is a regression task. Based on our Exploratory Data Analysis, Cs-137 shows the clearest decreasing trend with distance, so we use it as the main variable for modeling.
+We use a simple linear regression model with Cs-137 as the response variable and distance as the predictor. A linear model is appropriate here because:
+It is designed for continuous outcomes.
+It provides an interpretable slope that shows whether Cs-137 decreases with distance.
+It matches the roughly linear downward pattern we observed in the scatterplot.
+This model allows us to quantify the direction and strength of the relationship between distance and radiation levels, directly addressing our research question about how contamination decreased across Europe.
 
 # 6. Modeling Approach
 
