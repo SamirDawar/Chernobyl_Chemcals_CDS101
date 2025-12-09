@@ -9,7 +9,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
-<meta name="author" content="Samir Dawar, Andrew Lee, Sumera" />
+<meta name="author" content="Samir Dawar, Andrew Lee, Sumera Muhamm" />
 
 <meta name="date" content="2025-12-08" />
 
@@ -439,7 +439,7 @@ display: none;
 
 
 <h1 class="title toc-ignore">CDS 101 – Final Project Report</h1>
-<h4 class="author">Samir Dawar, Andrew Lee, Sumera</h4>
+<h4 class="author">Samir Dawar, Andrew Lee, Sumera Muhamm</h4>
 <h4 class="date">December 08, 2025</h4>
 
 </div>
@@ -636,27 +636,46 @@ radiation levels.</p>
 <div id="visualization-quality-and-storytelling" class="section level1" number="5">
 <h1><span class="header-section-number">5</span> 5. Visualization
 Quality and Storytelling</h1>
-<p>Use this section to satisfy the <strong>Visualization
-Quality</strong> rubric criterion:</p>
-<ul>
-<li>Explain why your plot types are appropriate.<br />
-</li>
-<li>Comment on labels, legends, colors, and overall readability.<br />
-</li>
-<li>Mention any steps you took to make plots accessible and
-interpretable.</li>
-</ul>
+<p>Our goal is to measure how radiation levels change with distance from
+the Chernobyl Nuclear Power Plant. Because our response variables
+(Cs-137, Cs-134, and I-131) are numeric measurements, this is a
+regression task. Based on our Exploratory Data Analysis, Cs-137 shows
+the clearest decreasing trend with distance, so we use it as the main
+variable for modeling. We use a simple linear regression model with
+Cs-137 as the response variable and distance as the predictor. A linear
+model is appropriate here because: It is designed for continuous
+outcomes. It provides an interpretable slope that shows whether Cs-137
+decreases with distance. It matches the roughly linear downward pattern
+we observed in the scatterplot. This model allows us to quantify the
+direction and strength of the relationship between distance and
+radiation levels, directly addressing our research question about how
+contamination decreased across Europe.</p>
 </div>
 <div id="modeling-approach" class="section level1" number="6">
 <h1><span class="header-section-number">6</span> 6. Modeling
 Approach</h1>
-<p>Explain how you framed the problem and which models you chose:</p>
-<ul>
-<li>Type of task (regression, classification, etc.)</li>
-<li>Baseline model or heuristic, if used.<br />
-</li>
-<li>Main model(s) chosen and why they are appropriate.</li>
-</ul>
+<p>Our overall goal is to understand how radiation levels changed as
+distance from the Chernobyl plant increased. Since both distance and the
+isotope concentrations are numeric variables, a simple linear regression
+is an appropriate modeling choice. Linear regression allows us to
+estimate how much radiation decreases, on average, for each unit
+increase in distance.</p>
+<p>We plan to fit separate regression models for each isotope:</p>
+<p>Cs-137 ~ distance</p>
+<p>Cs-134 ~ distance</p>
+<p>I-131 ~ distance</p>
+<p>This approach lets us compare how strongly each isotope responds to
+distance. Based on our EDA, Cs-137 shows the clearest downward trend,
+Cs-134 shows a weaker pattern, and I-131 appears highly variable because
+of its short half-life. Even though I-131 may not be well explained by
+distance alone, including it helps illustrate the differences between
+isotopes.</p>
+<p>Before fitting the models, we used scatterplots to check whether a
+linear relationship was reasonable. Cs-137 and Cs-134 showed patterns
+that make linear regression useful for quantifying the trend, while
+I-131 may result in a very low R² value. Overall, the modeling strategy
+is to compare the slopes and goodness-of-fit across the three isotopes
+to see which isotope is most influenced by geographic distance.</p>
 </div>
 <div id="model-implementation-evaluation" class="section level1" number="7">
 <h1><span class="header-section-number">7</span> 7. Model Implementation
@@ -804,7 +823,7 @@ install.packages(&quot;ggplot2&quot;)</code></pre>
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-## [1] ggplot2_3.5.2 dplyr_1.1.4  
+## [1] ggplot2_4.0.1 dplyr_1.1.4  
 ## 
 ## loaded via a namespace (and not attached):
 ##  [1] Matrix_1.7-0       gtable_0.3.6       jsonlite_2.0.0     compiler_4.4.1    
@@ -812,11 +831,12 @@ install.packages(&quot;ggplot2&quot;)</code></pre>
 ##  [9] yaml_2.3.10        fastmap_1.2.0      lattice_0.22-6     R6_2.6.1          
 ## [13] labeling_0.4.3     generics_0.1.4     knitr_1.50         tibble_3.3.0      
 ## [17] bslib_0.9.0        pillar_1.11.0      RColorBrewer_1.1-3 rlang_1.1.6       
-## [21] cachem_1.1.0       xfun_0.53          sass_0.4.10        cli_3.6.5         
-## [25] withr_3.0.2        magrittr_2.0.3     mgcv_1.9-1         digest_0.6.37     
-## [29] grid_4.4.1         rstudioapi_0.17.1  lifecycle_1.0.4    nlme_3.1-164      
-## [33] vctrs_0.6.5        evaluate_1.0.4     glue_1.8.0         farver_2.1.2      
-## [37] rmarkdown_2.29     tools_4.4.1        pkgconfig_2.0.3    htmltools_0.5.8.1</code></pre>
+## [21] cachem_1.1.0       xfun_0.53          sass_0.4.10        S7_0.2.1          
+## [25] cli_3.6.5          withr_3.0.2        magrittr_2.0.3     mgcv_1.9-1        
+## [29] digest_0.6.37      grid_4.4.1         rstudioapi_0.17.1  lifecycle_1.0.4   
+## [33] nlme_3.1-164       vctrs_0.6.5        evaluate_1.0.4     glue_1.8.0        
+## [37] farver_2.1.2       rmarkdown_2.29     tools_4.4.1        pkgconfig_2.0.3   
+## [41] htmltools_0.5.8.1</code></pre>
 </div>
 <div id="references" class="section level1" number="10">
 <h1><span class="header-section-number">10</span> 10. References</h1>

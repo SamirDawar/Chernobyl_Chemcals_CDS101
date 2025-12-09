@@ -3,13 +3,13 @@ title: "CDS 101 – Final Project Report"
 author: "Samir Dawar, Andrew Lee, Sumera Muhamm"
 date: "`r format(Sys.Date(), '%B %d, %Y')`"
 output:
-  pdf_document:
-    toc: true
   html_document:
     css: "gmu-cds101.css"
     toc: true
     toc_depth: 3
     number_sections: true
+  pdf_document:
+    toc: true
 ---
 
 
@@ -142,11 +142,19 @@ This model allows us to quantify the direction and strength of the relationship 
 
 # 6. Modeling Approach
 
-Explain how you framed the problem and which models you chose:
+Our overall goal is to understand how radiation levels changed as distance from the Chernobyl plant increased. Since both distance and the isotope concentrations are numeric variables, a simple linear regression is an appropriate modeling choice. Linear regression allows us to estimate how much radiation decreases, on average, for each unit increase in distance.
 
-- Type of task (regression, classification, etc.)
-- Baseline model or heuristic, if used.  
-- Main model(s) chosen and why they are appropriate.
+We plan to fit separate regression models for each isotope:
+
+Cs-137 ~ distance
+
+Cs-134 ~ distance
+
+I-131 ~ distance
+
+This approach lets us compare how strongly each isotope responds to distance. Based on our EDA, Cs-137 shows the clearest downward trend, Cs-134 shows a weaker pattern, and I-131 appears highly variable because of its short half-life. Even though I-131 may not be well explained by distance alone, including it helps illustrate the differences between isotopes.
+
+Before fitting the models, we used scatterplots to check whether a linear relationship was reasonable. Cs-137 and Cs-134 showed patterns that make linear regression useful for quantifying the trend, while I-131 may result in a very low R² value. Overall, the modeling strategy is to compare the slopes and goodness-of-fit across the three isotopes to see which isotope is most influenced by geographic distance.
 
 # 7. Model Implementation & Evaluation
 
